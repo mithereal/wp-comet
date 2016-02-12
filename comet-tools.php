@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Comet 
  * Plugin URI:        https://github.com/mithereal/wp-comet
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Tools to integrate/sync woocommerce with comet anywhere ['http://www.signature.net/cometanyproduct.html'] (a comet IB (business basic [~ 1980]) emulator) .
  * Version:           1.0.0
  * Author:            Jason Clark
  * Author URI:        http://github.com/mithereal
