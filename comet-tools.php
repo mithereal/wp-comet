@@ -72,4 +72,5 @@ function run_comet_tools() {
 	$plugin->run();
 
 }
+
 run_comet_tools();

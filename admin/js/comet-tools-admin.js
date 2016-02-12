@@ -1,6 +1,43 @@
 (function( $ ) {
 	'use strict';
+    $(function() {
 
+    $('#comet-import').on('click',function(e){
+
+        e.preventDefault();
+        $("input[id='comet_csv']").click();
+
+        var x = $("input[id='comet_csv']").val();
+
+        jQuery.ajax(
+            "admin-ajax.php",
+            {
+                type: "POST",
+                data: {
+                    action: "comet_import",
+                    data:  nonce
+                },
+                error:   handleError,
+                success: handleSuccess
+            }
+        );
+
+        function handleSuccess( data ) {
+            //use data to update DOM as needed
+        }
+
+        function handleError( data ) {
+            //handle the error and report the failure to the user in some way
+        }
+        $.ajax({
+            url: "comet_import.php",
+            type:"post",
+            data:x,
+        }).done(function(data) {
+            $('.progress').show();
+        });
+    });
+    });
 	/**
 	 * All of the code for your admin-facing JavaScript source
 	 * should reside in this file.
@@ -28,5 +65,6 @@
 	 * Although scripts in the WordPress core, Plugins and Themes may be
 	 * practising this, we should strive to set a better example in our own work.
 	 */
+
 
 })( jQuery );

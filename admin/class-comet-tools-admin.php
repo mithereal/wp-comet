@@ -40,6 +40,15 @@ class Comet_Tools_Admin {
 	 */
 	private $version;
 
+    /**
+     * The options name to be used in this plugin
+     *
+     * @since  	1.0.0
+     * @access 	private
+     * @var  	string 		$option_name 	Option name of this plugin
+     */
+    private $option_name = 'comet-tools';
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -99,5 +108,59 @@ class Comet_Tools_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/comet-tools-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+
+    /**
+     * Add an options page under the Settings submenu
+     *
+     * @since  1.0.0
+     */
+    public function add_options_page() {
+
+        $this->plugin_screen_hook_suffix = add_options_page(
+            __( 'Comet Settings', 'comet-settings' ),
+            __( 'Comet Import', 'comet-import' ),
+            'manage_options',
+            $this->plugin_name,
+            array( $this, 'display_options_page' )
+        );
+
+
+
+
+    }
+
+    /**
+     * Render the options page for plugin
+     *
+     * @since  1.0.0
+     */
+    public function display_options_page() {
+        include_once 'partials/comet-tools-admin-display.php';
+    }
+    public function register_setting() {
+        add_settings_section(
+            $this->option_name . '_general',
+            __( 'Import', 'comet_tools' ),
+            array( $this, 'comet_tools_main_cb' ),
+            $this->plugin_name
+        );
+    }
+
+    public function import_csv() {
+        // Handle request then generate response using WP_Ajax_Response
+    }
+
+    /**
+     * Render the text for the general section
+     *
+     * @since  1.0.0
+     */
+    public function comet_tools_main_cb() {
+        echo '<p>' . __( '<button id ="comet-import" class="button button-primary" >Import From Comet</button><input type="file" id="comet_csv" style="display: none;"  />', 'comet-tools' ) . '</p>';
+    }
+
+
+
+
 
 }
